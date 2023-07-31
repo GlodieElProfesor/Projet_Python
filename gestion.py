@@ -1,4 +1,3 @@
-from calendar import c
 from tkinter import *
 from tkinter import ttk
 from tkinter import messagebox
@@ -76,7 +75,7 @@ def cycle_toplevel():
     frame_cycle.pack()
 
     # Récupération des données de la base de données et affichage dans Arbre_troisieme
-    conn = sqlite3.connect("cycle.db")
+    conn = sqlite3.connect("bases_des_donnees/cycle.db")
     cur = conn.cursor()
     select5 = cur.execute("SELECT * FROM cycle_eleves ORDER BY id DESC")
     select5 = list(select5)
@@ -123,7 +122,7 @@ def quatrieme_toplevel():
     frame_quatrieme.pack()
 
     # Récupération des données de la base de données et affichage dans Arbre_troisieme
-    conn = sqlite3.connect("quatrieme.db")
+    conn = sqlite3.connect("bases_des_donnees/quatrieme.db")
     cur = conn.cursor()
     select4 = cur.execute("SELECT * FROM quatrieme_eleves ORDER BY id DESC")
     select4= list(select4)
@@ -170,7 +169,7 @@ def troisieme_toplevel():
     frame_troisieme.pack()
 
     # Récupération des données de la base de données et affichage dans Arbre_troisieme
-    conn = sqlite3.connect("troisieme.db")
+    conn = sqlite3.connect("bases_des_donnees/troisieme.db")
     cur = conn.cursor()
     select3 = cur.execute("SELECT * FROM troisieme_eleves ORDER BY id DESC")
     select3 = list(select3)
@@ -217,7 +216,7 @@ def deuxieme_toplevel():
     frame_deuxieme.pack()
 
     # Récupération des données de la base de données et affichage dans Arbre_troisieme
-    conn = sqlite3.connect("deuxieme.db")
+    conn = sqlite3.connect("bases_des_donnees/deuxieme.db")
     cur = conn.cursor()
     select2 = cur.execute("SELECT * FROM deuxieme_eleves ORDER BY id DESC")
     select2 = list(select2)
@@ -264,7 +263,7 @@ def ouvrir_toplevel():
     frame_premiere.pack()
 
     # Récupération des données de la base de données et affichage dans Arbre_troisieme
-    conn = sqlite3.connect("premiere.db")
+    conn = sqlite3.connect("bases_des_donnees/premiere.db")
     cur = conn.cursor()
     select1 = cur.execute("SELECT * FROM premiere_eleves ORDER BY id DESC")
     select1 = list(select1)
@@ -289,7 +288,7 @@ def valide():
         classe=list_der1.get() + list_der2.get() + list_der3.get() + list_der4.get() + list_der5.get()
         Montant=entree6.get()
         Date=str(selected_date.get())
-        conn= sqlite3.connect("mydatabase.db")
+        conn= sqlite3.connect("bases_des_donnees/mydatabase.db")
         cur = conn.cursor()
 
         req = "CREATE TABLE IF NOT EXISTS eleves (id INTEGER primary KEY AUTOINCREMENT,\
@@ -301,7 +300,7 @@ def valide():
         conn.commit()
         conn.close()
 
-        conn= sqlite3.connect("mydatabase.db")
+        conn= sqlite3.connect("bases_des_donnees/mydatabase.db")
         cur = conn.cursor()
         select = cur.execute("SELECT*FROM eleves order by id desc")
         select =list(select)
@@ -320,7 +319,7 @@ def valide():
         # Insertion des données si la classe est égale à "1ère Hp"
         if classe == "1ere HP" or classe == "1ere TCC" or classe=="1ere BC" or classe == "1ere LIT" or classe == "1ere SCIENTIF":
             # Connexion à la base de données
-            conn = sqlite3.connect("premiere.db")
+            conn = sqlite3.connect("bases_des_donnees/premiere.db")
             cur = conn.cursor()
 
             req = "CREATE TABLE IF NOT EXISTS  premiere_eleves (id INTEGER primary KEY AUTOINCREMENT,\
@@ -335,7 +334,7 @@ def valide():
         # Ouverture du toplevel et mise à jour de l'affichage de l'arbre
         if classe == "1ere":
             ouvrir_toplevel()
-            conn = sqlite3.connect("premiere.db")
+            conn = sqlite3.connect("bases_des_donnees/premiere.db")
             cur = conn.cursor()
             select_premiere = cur.execute("SELECT * FROM premiere_eleves ORDER BY id DESC")
             select_premiere = list(select_premiere)
@@ -355,7 +354,7 @@ def valide():
         # Insertion des données si la classe est égale à "1ère Hp"
         if classe == "2ème HP" or classe == "2ème TCC" or classe=="2ème BC" or classe == "2ème LIT" or classe == "2ème SCIENTIF":
             # Connexion à la base de données
-            conn = sqlite3.connect("deuxieme.db")
+            conn = sqlite3.connect("bases_des_donnees/deuxieme.db")
             cur = conn.cursor()
 
             req = "CREATE TABLE IF NOT EXISTS  deuxieme_eleves (id INTEGER primary KEY AUTOINCREMENT,\
@@ -370,7 +369,7 @@ def valide():
         # Ouverture du toplevel et mise à jour de l'affichage de l'arbre
         if classe == "2ème":
             deuxieme_toplevel()
-            conn = sqlite3.connect("deuxieme.db")
+            conn = sqlite3.connect("bases_des_donnees/deuxieme.db")
             cur = conn.cursor()
             select_deuxime = cur.execute("SELECT * FROM deuxieme_eleves ORDER BY id DESC")
             select_deuxime = list(select_deuxime)
@@ -391,7 +390,7 @@ def valide():
         # Insertion des données si la classe est égale à "1ère Hp"
         if classe == "3ème HP" or classe == "3ème TCC" or classe=="3ème BC" or classe == "3ème LIT" or classe == "3ème SCIENTIF":
             # Connexion à la base de données
-            conn = sqlite3.connect("troisieme.db")
+            conn = sqlite3.connect("bases_des_donnees/troisieme.db")
             cur = conn.cursor()
 
             req = "CREATE TABLE IF NOT EXISTS  troisieme_eleves (id INTEGER primary KEY AUTOINCREMENT,\
@@ -406,7 +405,7 @@ def valide():
         # Ouverture du toplevel et mise à jour de l'affichage de l'arbre
         if classe == "3eme":
             troisieme_toplevel()
-            conn = sqlite3.connect("troisieme.db")
+            conn = sqlite3.connect("bases_des_donnees/troisieme.db")
             cur = conn.cursor()
             select_troisieme = cur.execute("SELECT * FROM troisieme_eleves ORDER BY id DESC")
             select_troisieme = list(select_troisieme)
@@ -428,7 +427,7 @@ def valide():
         # Insertion des données si la classe est égale à "1ère Hp"
         if classe == "4ème HP" or classe == "4ème TCC" or classe=="4ème BC" or classe == "4ème LIT" or classe == "4ème SCIENTIF":
             # Connexion à la base de données
-            conn = sqlite3.connect("quatrieme.db")
+            conn = sqlite3.connect("bases_des_donnees/quatrieme.db")
             cur = conn.cursor()
 
             req = "CREATE TABLE IF NOT EXISTS  quatrieme_eleves (id INTEGER primary KEY AUTOINCREMENT,\
@@ -442,7 +441,7 @@ def valide():
         # Ouverture du toplevel et mise à jour de l'affichage de l'arbre
         if classe == "4ème":
             quatrieme_toplevel()
-            conn = sqlite3.connect("quatrieme.db")
+            conn = sqlite3.connect("bases_des_donnees/quatrieme.db")
             cur = conn.cursor()
             select_quatrieme = cur.execute("SELECT * FROM quatrieme_eleves ORDER BY id DESC")
             select_quatrieme = list(select_quatrieme)
@@ -466,7 +465,7 @@ def valide():
         # Insertion des données si la classe est égale à "1ère Hp"
         if classe == "8ème" or classe == "7ème":
             # Connexion à la base de données
-            conn = sqlite3.connect("cycle.db")
+            conn = sqlite3.connect("bases_des_donnees/cycle.db")
             cur = conn.cursor()
 
             req = "CREATE TABLE IF NOT EXISTS  cycle_eleves (id INTEGER primary KEY AUTOINCREMENT,\
@@ -478,7 +477,7 @@ def valide():
             conn.close()
 
         # Ouverture du toplevel et mise à jour de l'affichage de l'arbre
-        if classe == "cycle":
+        if classe == "bases_des_donnees/cycle":
             cycle_toplevel()
             conn = sqlite3.connect("cycle.db")
             cur = conn.cursor()
@@ -493,7 +492,7 @@ def valide():
 ##########################################################################################################################""
 def delete():
     idSelect = Arbre.item(Arbre.selection())["values"][0]
-    conn= sqlite3.connect("mydatabase.db")
+    conn= sqlite3.connect("bases_des_donnees/mydatabase.db")
     cur = conn.cursor()
     cur.execute("delete from eleves where id ={}".format(idSelect))
     conn.commit()
@@ -510,7 +509,7 @@ def delete():
 
 ########################################################################################################################
 def recuperer():
-    conn = sqlite3.connect("mydatabase.db")
+    conn = sqlite3.connect("bases_des_donnees/mydatabase.db")
     cur = conn.cursor()
     select = cur.execute("SELECT * FROM supprimes")
     select = list(select)
@@ -537,7 +536,7 @@ bouton_recherche_image = PhotoImage(file="images/boutons/recherche.png")
 
 def recherche():
     search_term = search_entry.get()
-    conn = sqlite3.connect("mydatabase.db")
+    conn = sqlite3.connect("bases_des_donnees/mydatabase.db")
     cur = conn.cursor()
     cur.execute("SELECT * FROM eleves WHERE Noms LIKE ?", ('%' + search_term + '%',))
     results = cur.fetchall()
@@ -620,7 +619,7 @@ parcourit_button.place(x=230, y= 40 )
 
 
 # Ouvrir l'image et la redimensionner
-with open("images/photos_eleve/profil.png", "rb") as f:
+with open("images/photos_eleve/profil_1.png", "rb") as f:
     image_profil = Image.open(f)
     new_width = 400
     new_height = 300
@@ -833,7 +832,7 @@ Arbre.column(5, width=100)
 
 
 # inserer les donnée dans le treevievw
-conn= sqlite3.connect("mydatabase.db")
+conn= sqlite3.connect("bases_des_donnees/mydatabase.db")
 cur = conn.cursor()
 
 req = "CREATE TABLE IF NOT EXISTS eleves (id INTEGER primary KEY AUTOINCREMENT,\
